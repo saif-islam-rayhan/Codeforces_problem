@@ -1,0 +1,21 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main() {
+    int test;
+    cin >> test;
+    while (test--) {
+        long long a, b, n;
+        cin >> a >> b >> n;
+        if (n%3== 0) {
+            cout << a << endl;
+        }
+        else if (n%3== 1) {
+            cout << b << endl;
+        }
+        else {
+            long long x = a ^ b;
+            cout << x << endl;
+        }
+    }
+    return 0;
+}
