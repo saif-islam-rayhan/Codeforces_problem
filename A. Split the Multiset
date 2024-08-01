@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+using namespace std;
+void solve() {
+    int n, k;
+    cin >> n >> k;
+    int ans = 0;
+    if (n == 1)
+    {
+        cout << 0 << endl;
+        return;
+    }
+    else if (n <= k) {
+        ans = 1;
+    }
+    else {
+        n += -1 + k - 2;
+        ans = n / (k - 1);
+    }
+    cout << ans << endl;
+}
+int main() {
+    int test;
+    cin >> test;
+    while (test--) {
+        solve();
+    }
+    return 0;
+}
