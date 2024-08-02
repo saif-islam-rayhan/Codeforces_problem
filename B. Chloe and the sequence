@@ -1,0 +1,32 @@
+#include <bits/stdc++.h>
+using namespace std;
+string convert(long long n) {
+    string s;
+    while(n > 0) {
+        long long rem = n % 2;
+        s.push_back(rem + '0');
+        n /= 2;
+    } 
+    return s;
+}
+void solve() {
+    long long  a, n; cin >> a >> n;
+	string bit = convert(n);
+	int last_set_bit = -1;
+	for (int i = 0; i < bit.size(); i++ ) {
+		if (bit[i] == '1')
+		{
+			last_set_bit = i + 1;
+			break;
+		}
+	}
+	cout << last_set_bit << endl;
+}
+int main() {
+    int test = 1;
+    while(test--) {
+        solve();
+    }
+ 
+    return 0;
+}
