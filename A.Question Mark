@@ -1,0 +1,42 @@
+#include<bits/stdc++.h>
+using namespace std;
+void solve() {
+    int n;
+    cin >> n;
+    string s;
+    cin >> s;
+    int cntA = 0, cntB = 0, cntC = 0, cntD = 0;
+    int  cnt = 0;
+    for (char c : s) {
+        if (c == 'A') {
+            cntA++;
+        }
+        else if (c == 'B') {
+            cntB++;
+        }
+        else if (c == 'C') {
+            cntC++;
+        }
+        else if (c == 'D') {
+            cntD++;
+        }
+        else if (c == '?') {
+            cnt++;
+        }
+    }
+     int mA = min(cntA, n);
+    int mB= min(cntB, n);
+    int mc = min(cntC, n);
+    int md = min(cntD, n);
+    int ms = mA + mB + mc + md;
+    cout << ms << endl;
+}
+
+int main() {
+   int t;
+   cin >> t;
+   while (t--) {
+      solve();
+   }
+   return 0;
+}
