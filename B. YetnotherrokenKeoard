@@ -1,0 +1,63 @@
+#include <bits/stdc++.h>
+
+#define sqr(x)        (x) * (x)
+#define sz(x)         (int)x.size()
+#define all(x)        (x).begin(),(x).end()
+#define rall(x)       (x).rbegin(),(x).rend()
+#define prec(x)       fixed<<setprecision(x)
+#define testcase      cout << "Case " << tc++ << ": "
+#define sr      ios_base::sync_with_stdio(false); cin.tie(nullptr)
+
+using namespace std;
+
+using ll = long long;
+using ld = long double;
+using ull = unsigned long long;
+const ld PI = acos(-1.0);
+const ll MOD = 1e9 + 7;
+const ld EPS = 1e-9;
+const ll N = 2e5 + 5;
+int tc = 1;
+
+///...(__________________________(mdrayhan75)____________________________)...///
+void solve() {
+    string s, t;
+    cin >> s;
+    int n = s.size();
+    int b=0, B = 0;
+    for (int i =n;i >= 0;i--) {
+        if (s[i] == 'b') {
+            b++;
+            s[i] = '$';
+        }
+        if (s[i] == 'B') {
+            B++;
+            s[i] = '$';
+        }
+        if (islower(s[i]) and b) {
+            s[i] = '$';
+            b--;
+        }
+        if (isupper(s[i]) and B) {
+            s[i] = '$';
+            B--;
+        }
+    }
+    for (auto t : s) {
+        if (t != '$') {
+            cout << t ;
+        }
+    }
+    cout << endl;
+}
+
+int main() {
+   sr;
+
+   int t = 1;
+   cin >> t;
+   while (t--) {
+      solve();
+   }
+   return 0;
+}
