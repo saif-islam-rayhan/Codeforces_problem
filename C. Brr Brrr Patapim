@@ -1,0 +1,73 @@
+#include <bits/stdc++.h>
+
+#define sqr(x)        (x) * (x)
+#define sz(x)         (int)x.size()
+#define all(x)        (x).begin(), (x).end()
+#define rall(x)       (x).rbegin(), (x).rend()
+#define prec(x)       fixed << setprecision(x)
+#define testcase      cout << "Case " << tc++ << ": "
+#define sr            ios_base::sync_with_stdio(false); cin.tie(nullptr)
+
+using namespace std;
+
+using ll  = long long;
+using ld  = long double;
+using ull = unsigned long long;
+
+const ld PI  = acos(-1.0);
+const ll MOD = 1000000007;
+const ld EPS = 1e-9;
+
+int tc = 1;
+
+void solve() {
+    int n;
+    cin >> n;
+   
+    vector<vector<int>> G(n+1, vector<int>(n+1));
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= n; j++) {
+            cin >> G[i][j];
+        }
+    }
+
+    vector<int> v(2*n + 1);
+  
+    vector<bool> u(2*n + 1, false);
+
+
+    for (int s = 2; s <= 2*n; s++) {
+        int i, j;
+        if (s - 1 <= n) {
+            i = s - 1;
+            j = 1;
+        } else {
+            i = n;
+            j = s - n;
+        }
+        v[s] = G[i][j];
+        u[v[s]] = true;
+    }
+
+   
+    for (int x = 1; x <= 2*n; x++) {
+        if (!u[x]) {
+            v[1] = x;
+            break;
+        }
+    }
+
+    for (int i = 1; i <= 2*n; i++) {
+        cout << v[i] << (i < 2*n ? ' ' : '\n');
+    }
+}
+
+int main() {
+    sr;
+    int t;
+    cin >> t;
+    while (t--) {
+        solve();
+    }
+    return 0;
+}
