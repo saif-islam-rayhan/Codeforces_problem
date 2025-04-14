@@ -1,0 +1,61 @@
+#include <bits/stdc++.h>
+
+#define sqr(x)        (x) * (x)
+#define sz(x)         (int)x.size()
+#define all(x)        (x).begin(),(x).end()
+#define rall(x)       (x).rbegin(),(x).rend()
+#define prec(x)       fixed<<setprecision(x)
+#define testcase      cout << "Case " << tc++ << ": "
+#define sr            ios_base::sync_with_stdio(false); cin.tie(nullptr)
+
+using namespace std;
+
+using ll = long long;
+using ld = long double;
+using ull = unsigned long long;
+const ld PI = acos(-1.0);
+const ll MOD = 1e9 + 7;
+const ld EPS = 1e-9;
+const int N = 2e5 + 5;
+int tc = 1;
+
+///...(__________________________(mdrayhan75)____________________________)...///
+void solve() {
+    int n, k;
+    cin >> n >> k;
+    vector<int> cnt(n+1, 0);
+    for (int i = 0; i < n; i++) {
+        int x;
+        cin >> x;
+        if (x >= 1 && x <= n) cnt[x]++;
+    }
+
+    ll ans = 0;
+    
+    int up = (k - 1) / 2;
+    for (int v = 1; v <= up; v++) {
+        int u = k - v;
+        if (u >= 1 && u <= n) {
+            ans += min(cnt[v], cnt[u]);
+        }
+    }
+    
+    if (k % 2 == 0) {
+        int v = k / 2;
+        if (v >= 1 && v <= n) {
+            ans += cnt[v] / 2;
+        }
+    }
+
+    cout << ans << "\n";
+}
+
+int main() {
+    sr;
+    int t;
+    cin >> t;
+    while (t--) {
+        solve();
+    }
+    return 0;
+}
