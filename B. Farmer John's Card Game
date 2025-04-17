@@ -1,0 +1,108 @@
+#include <bits/stdc++.h>
+#define sqr(x)        (x) * (x)
+#define sz(x)         (int)x.size()
+#define all(x)        (x).begin(),(x).end()
+#define rall(x)       (x).rbegin(),(x).rend()
+#define prec(x)       fixed<<setprecision(x)
+#define testcase      cout << "Case " << tc++ << ": "
+#define sr            ios_base::sync_with_stdio(false); cin.tie(nullptr)
+using namespace std;
+using ll  = long long;
+using ld  = long double;
+using ull = unsigned long long;
+const ld PI  = acos(-1.0);
+const ll MOD = 1e9 + 7;
+const ld EPS = 1e-9;
+const ll N   = 2e5 + 5;
+int tc = 1;
+
+void solve() {
+    int n, m;
+    cin >> n >> m;
+    vector<vector<int>> b(n);
+    int i = 0;
+    while (i < n) {
+        b[i].resize(m);
+        int j = 0;
+        while (j < m) {
+            cin >> b[i][j];
+            j++;
+        }
+        sort(all(b[i]));
+        i++;
+    }
+    vector<vector<int>> cnt(n, vector<int>(m, 0));
+    i = 0;
+    while (i < n) {
+        int j = 0;
+        while (j < m) {
+            int k = b[i][j] / n;
+            if (k < m) cnt[i][k]++;
+            j++;
+        }
+        i++;
+    }
+    i = 0;
+    while (i < n) {
+        int k = 0;
+        while (k < m) {
+            if (cnt[i][k] != 1) {
+                cout << "-1\n";
+                return;
+            }
+            k++;
+        }
+        i++;
+    }
+    vector<vector<int>> r(n, vector<int>(m));
+    i = 0;
+    while (i < n) {
+        int k = 0;
+        while (k < m) {
+            r[i][k] = b[i][k] % n;
+            k++;
+        }
+        i++;
+    }
+    i = 0;
+    while (i < n) {
+        int j = i + 1;
+        while (j < n) {
+            int sign = (r[i][0] < r[j][0]) ? 1 : 0;
+            int k = 1;
+            while (k < m) {
+                int s2 = (r[i][k] < r[j][k]) ? 1 : 0;
+                if (s2 != sign) {
+                    cout << "-1\n";
+                    return;
+                }
+                k++;
+            }
+            j++;
+        }
+        i++;
+    }
+    vector<int> p(n);
+    i = 0;
+    while (i < n) {
+        p[i] = i;
+        i++;
+    }
+    sort(all(p), [&](int x, int y) {
+        return r[x][0] < r[y][0];
+    });
+    i = 0;
+    while (i < n) {
+        cout << p[i] + 1 << " ";
+        i++;
+    }
+    cout << "\n";
+}
+
+int main() {
+    sr;
+    int t;
+    cin >> t;
+    while (t--) solve();
+    return 0;
+}
