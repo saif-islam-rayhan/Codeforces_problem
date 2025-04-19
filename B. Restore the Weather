@@ -1,0 +1,64 @@
+#include <bits/stdc++.h>
+#define sqr(x)        (x) * (x)
+#define sz(x)         (int)x.size()
+#define all(x)        (x).begin(),(x).end()
+#define rall(x)       (x).rbegin(),(x).rend()
+#define prec(x)       fixed<<setprecision(x)
+#define testcase      cout << "Case " << tc++ << ": "
+#define sr            ios_base::sync_with_stdio(false); cin.tie(nullptr)
+using namespace std;
+using ll  = long long;
+using ld  = long double;
+using ull = unsigned long long;
+const ld PI  = acos(-1.0);
+const ll MOD = 1e9 + 7;
+const ld EPS = 1e-9;
+const ll N   = 2e5 + 5;
+int tc = 1;
+
+void solve() {
+    int n;
+    ll k;
+    cin >> n >> k;
+    vector<ll> a(n), b(n);
+    for (int i = 0; i < n; i++) cin >> a[i];
+    for (int i = 0; i < n; i++) cin >> b[i];
+
+    struct Day { ll low, high; int idx; };
+    vector<Day> days(n);
+    for (int i = 0; i < n; i++) {
+        days[i] = { a[i] - k, a[i] + k, i };
+    }
+
+    sort(all(days), [](const Day &x, const Day &y){
+        return x.high < y.high;
+    });
+    sort(all(b));
+
+    multiset<ll> ms;
+    int ptr = 0;
+    vector<ll> ans(n);
+
+    for (auto &d : days) {
+        while (ptr < n && b[ptr] <= d.high) {
+            ms.insert(b[ptr]);
+            ptr++;
+        }
+        auto it = ms.lower_bound(d.low);
+    
+        ans[d.idx] = *it;
+        ms.erase(it);
+    }
+
+    for (int i = 0; i < n; i++) {
+        cout << ans[i] << (i + 1 == n ? '\n' : ' ');
+    }
+}
+
+int main() {
+    sr;
+    int t;
+    cin >> t;
+    while (t--) solve();
+    return 0;
+}
