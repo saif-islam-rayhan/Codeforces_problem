@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+
+#define sqr(x)        (x) * (x)
+#define sz(x)         (int)x.size()
+#define all(x)        (x).begin(),(x).end()
+#define rall(x)       (x).rbegin(),(x).rend()
+#define prec(x)       fixed<<setprecision(x)
+#define testcase      cout << "Case " << tc++ << ": "
+#define sr            ios_base::sync_with_stdio(false); cin.tie(nullptr)
+
+using namespace std;
+
+using ll  = long long;
+using ld  = long double;
+using ull = unsigned long long;
+int tc = 1;
+
+///...(__________________________(mdrayhan75)____________________________)...///
+void solve() {
+    int n, k;
+    cin >> n >> k;
+    vector<int> v;
+    for (int i = 0; i < n; i++) {
+        int x;
+        cin >> x;
+        if (find(all(v), x) == v.end()) {
+            v.insert(v.begin(), x);
+            if (sz(v) > k) v.pop_back();
+        }
+    }
+    cout << sz(v) << '\n';
+    for (int i = 0; i < sz(v); i++) {
+        cout << v[i] << (i + 1 < sz(v) ? ' ' : '\n');
+    }
+}
+
+int main() {
+    sr;
+    solve();
+    return 0;
+}
