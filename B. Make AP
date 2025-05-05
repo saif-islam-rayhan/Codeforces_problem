@@ -1,0 +1,65 @@
+#include <bits/stdc++.h>
+
+#define sqr(x)        (x) * (x)
+#define sz(x)         (int)x.size()
+#define all(x)        (x).begin(), (x).end()
+#define rall(x)       (x).rbegin(), (x).rend()
+#define prec(x)       fixed << setprecision(x)
+#define testcase      cout << "Case " << tc++ << ": "
+#define sr            ios_base::sync_with_stdio(false); cin.tie(nullptr)
+
+using namespace std;
+
+using ll = long long;
+using ld = long double;
+using ull = unsigned long long;
+const ld PI = acos(-1.0);
+const ll MOD = 1e9 + 7;
+const ld EPS = 1e-9;
+const ll N = 2e5 + 5;
+int tc = 1;
+
+///...(__________________________(mdrayhan75)____________________________)...///
+void solve() {
+    ll a, b, c;
+    cin >> a >> b >> c;
+
+    bool ok = false;
+
+    // 1) multiply a -> a' = 2b - c
+    {
+        ll a2 = 2*b - c;
+        if (a2 > 0 && a2 % a == 0) {
+            ok = true;
+        }
+    }
+    // 2) multiply b -> b' = (a + c) / 2
+    {
+        ll sum = a + c;
+        if (sum % 2 == 0) {
+            ll b2 = sum / 2;
+            if (b2 > 0 && b2 % b == 0) {
+                ok = true;
+            }
+        }
+    }
+    // 3) multiply c -> c' = 2b - a
+    {
+        ll c2 = 2*b - a;
+        if (c2 > 0 && c2 % c == 0) {
+            ok = true;
+        }
+    }
+
+    cout << (ok ? "YES\n" : "NO\n");
+}
+
+int main() {
+    sr;
+    int T;
+    cin >> T;
+    while (T--) {
+        solve();
+    }
+    return 0;
+}
