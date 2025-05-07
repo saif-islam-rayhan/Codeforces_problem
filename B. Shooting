@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+
+#define sqr(x)        (x) * (x)
+#define sz(x)         (int)x.size()
+#define all(x)        (x).begin(),(x).end()
+#define rall(x)       (x).rbegin(),(x).rend()
+#define prec(x)       fixed<<setprecision(x)
+#define testcase      cout << "Case " << tc++ << ": "
+#define sr            ios_base::sync_with_stdio(false); cin.tie(nullptr)
+
+using namespace std;
+
+using ll  = long long;
+using ld  = long double;
+using ull = unsigned long long;
+int tc = 1;
+
+///...(__________________________(mdrayhan75)____________________________)...///
+void solve() {
+    int n;
+    cin >> n;
+    vector<pair<int, int>> a(n); // {durability, index}
+    for (int i = 0; i < n; i++) {
+        cin >> a[i].first;
+        a[i].second = i + 1;
+    }
+
+    sort(rall(a)); // descending order of durability
+
+    ll ans = 0;
+    for (int i = 0; i < n; i++) {
+        ans += 1LL * a[i].first * i + 1;
+    }
+
+    cout << ans << '\n';
+    for (int i = 0; i < n; i++) {
+        cout << a[i].second << (i + 1 < n ? ' ' : '\n');
+    }
+}
+
+int main() {
+    sr;
+    solve();
+    return 0;
+}
