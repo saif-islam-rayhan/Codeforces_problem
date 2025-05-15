@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+
+#define sqr(x)        (x) * (x)
+#define sz(x)         (int)x.size()
+#define all(x)        (x).begin(),(x).end()
+#define rall(x)       (x).rbegin(),(x).rend()
+#define prec(x)       fixed<<setprecision(x)
+#define testcase      cout << "Case " << tc++ << ": "
+#define sr            ios_base::sync_with_stdio(false); cin.tie(nullptr)
+
+using namespace std;
+
+using ll  = long long;
+using ld  = long double;
+using ull = unsigned long long;
+int tc = 1;
+
+///...(__________________________(mdrayhan75)____________________________)...///
+
+void solve() {
+    int x;
+    cin >> x;
+    int best_y = 1;
+    int max_val = 1; // since gcd(x,1) = 1 always, so val = 1+1 = 2 initially
+    for (int y = 2; y < x; y++) {
+        int val = __gcd(x, y) + y;
+        if (val > max_val) {
+            max_val = val;
+            best_y = y;
+        }
+    }
+    cout << best_y << '\n';
+}
+
+int main() {
+    sr;
+    int t;
+    cin >> t;
+    while (t--) {
+        solve();
+    }
+    return 0;
+}
