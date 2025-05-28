@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+#define sqr(x)        (x) * (x)
+#define sz(x)         (int)x.size()
+#define all(x)        (x).begin(),(x).end()
+#define rall(x)       (x).rbegin(),(x).rend()
+#define prec(x)       fixed<<setprecision(x)
+#define testcase      cout << "Case " << tc++ << ": "
+#define sr            ios_base::sync_with_stdio(false); cin.tie(nullptr)
+using namespace std;
+using ll = long long;
+int tc = 1;
+
+void solve() {
+    int n, k;
+    cin >> n >> k;
+    vector<ll> a(k);
+    for (ll &x : a) cin >> x;
+    ll A = *max_element(all(a));
+    bool used = false;
+    ll splits = 0;
+    for (ll x : a) {
+        if (!used && x == A) {
+            used = true;
+        } else {
+            if (x > 1) splits += (x - 1);
+        }
+    }
+    ll merges = n - A;
+    cout << splits + merges << '\n';
+}
+
+int main() {
+    sr;
+    int t;
+    cin >> t;
+    while (t--) solve();
+    return 0;
+}
